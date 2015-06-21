@@ -21,4 +21,17 @@ router.get('/mapresult', function(req, res, next) {
 router.get('/london', function(req, res, next) {
   res.render('london', { title: 'London' });
 });
+router.get('/london2', function(req, res, next) {
+  res.render('london2', { title: 'London2' });
+});
+router.get('/checkout', function(req, res, next) {
+  res.render('checkout', { title: 'checkout' });
+});
+
+router.get('/hipster', function(req, res, next) {
+  res.render('hipster', { title: 'hipster' });
+});
+router.get('/hipster2', function(req, res, next) {
+  res.render('hipster2', { title: 'hipster2' });
+});
 module.exports = router;
