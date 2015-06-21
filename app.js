@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var braintree = require('braintree');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -57,4 +57,55 @@ app.use(function(err, req, res, next) {
 });
 
 
+var util = require('util'),
+    braintree = require('braintree');
+
+var gateway = braintree.connect({
+  environment: braintree.Environment.Sandbox,
+  merchantId: '8f6977762nz4dh6g',
+  publicKey: '4b56hhx9ywx3yz4y',
+  privateKey: '18b1fe806fe411af81e05857b151ea48'
+});
+/*
+gateway.transaction.sale({
+  amount: '5.00',
+  creditCard: {
+    number: '5105105105105100',
+    expirationDate: '05/12'
+  }
+}, function (err, result) {
+  if (err) throw err;
+
+  if (result.success) {
+    util.log('Transaction ID: ' + result.transaction.id);
+  } else {
+    util.log(result.message);
+  }
+});
+*/
+app.get('/token', function (req, res) {
+    console.log(req);
+  gateway.clientToken.generate(null, function (error, response) {
+    if (!error) {
+      res.send(response.clientToken);
+    } else {
+      res.send(response);
+    }
+  });
+});
+
+app.post("/payment-methods", function (req, res) {
+  var nonce = req.body.payment_method_nonce;
+  // Use payment method nonce here
+});
+
+app.post("/checkout", function (req, res) {
+    
+    gateway.transaction.sale({
+      amount: '10.00',
+      paymentMethodNonce: 'nonce-from-the-client',
+    }, function (err, result) {
+    });
+});
+/**/
 module.exports = app;
