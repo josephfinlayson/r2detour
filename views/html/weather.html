@@ -27,10 +27,11 @@
 
         var wxoverlay=new WXTiles();
         wxoverlay.addToMap(map);
-        wxoverlay.addColorBar(‘big’,‘horiz’);
+        wxoverlay.addColorBar('big','horiz');
 
-        document.getElementById(‘tSelect’).appendChild(wxoverlay.getTSelect());
-        document.getElementById(‘wxSelect’).appendChild(wxoverlay.getVSelect());
+        document.getElementById('tSelect').appendChild(wxoverlay.getTSelect());
+        document.getElementById('wxSelect').appendChild(wxoverlay.getVSelect());
+     $('div').click(function () {console.log( wxoverlay.getMetaData())});
   </script>
   </body>
 </html>

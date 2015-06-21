@@ -66,7 +66,7 @@ function initialize() {
         destination.save(null, {
           success: function(destination) {
             // Execute any logic that should take place after the object is saved.
-            alert('New object created with objectId: ' + start.id);
+            console.log('New object created with objectId: ' + start.id);
           },
           error: function(destination, error) {
             // Execute any logic that should take place if the save fails.
