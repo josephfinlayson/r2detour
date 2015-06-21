@@ -34,4 +34,7 @@ router.get('/hipster', function(req, res, next) {
 router.get('/hipster2', function(req, res, next) {
   res.render('hipster2', { title: 'hipster2' });
 });
+router.get('/weather', function(req, res, next) {
+  res.render('weather', { title: 'weather'});
+});
 module.exports = router;
